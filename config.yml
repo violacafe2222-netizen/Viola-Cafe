@@ -1,0 +1,60 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+site_url: "https://violacafe-menu.netlify.app"
+display_url: "https://violacafe-menu.netlify.app"
+logo_url: "/assets/logo.jpeg"
+
+collections:
+  - name: "settings"
+    label: "Cafe Settings"
+    files:
+      - name: "general"
+        label: "General Settings"
+        file: "content/settings.json"
+        format: "json"
+        fields:
+          - {label: "Cafe Name", name: "cafe_name", widget: "string"}
+          - {label: "City", name: "city", widget: "string"}
+          - {label: "Subtitle", name: "subtitle", widget: "string"}
+          - {label: "Currency", name: "currency", widget: "string"}
+          - {label: "WhatsApp Number", name: "whatsapp", widget: "string", hint: "Country code + number, e.g. 251966642222"}
+          - {label: "Phone Number", name: "phone", widget: "string"}
+          - {label: "WhatsApp Message", name: "whatsapp_message", widget: "string"}
+          - label: "Top Badges"
+            name: "badges"
+            widget: "list"
+            field: {label: "Badge", name: "badge", widget: "string"}
+          - {label: "Intro Title", name: "intro_title", widget: "string"}
+          - {label: "Intro Text", name: "intro_text", widget: "string"}
+          - {label: "Footer Text", name: "footer", widget: "string"}
+
+  - name: "menu"
+    label: "Menu Manager"
+    files:
+      - name: "all_menu"
+        label: "All Menu Items"
+        file: "content/menu.json"
+        format: "json"
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "Category Name", name: "name", widget: "string"}
+              - {label: "Category Emoji", name: "emoji", widget: "string", required: false}
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.name}} — {{fields.price}}"
+                fields:
+                  - {label: "Item Name", name: "name", widget: "string"}
+                  - {label: "Price", name: "price", widget: "string"}
+                  - {label: "Photo", name: "photo", widget: "image", required: false}
+                  - {label: "Small Note", name: "note", widget: "string", required: false}
+                  - {label: "Badge (New / Best Seller)", name: "badge", widget: "string", required: false}
